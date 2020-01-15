@@ -1,0 +1,454 @@
+:root {
+    --borderColor: rgb(253, 139, 33);
+}
+
+html,body {
+    margin:0; 
+    padding:0; 
+    width: 100%;
+    height: 100%;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently supported by Chrome and Opera */
+    outline: none;
+}
+
+/*
+    RELATED TO OVERPASS MAP
+*/
+#map { 
+    position: fixed;
+    top:0; bottom:0;
+    width: 100%;
+}
+
+.marker {
+    background-image: url('./img/booster.png');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.userMarker {
+    background-image: url('./img/userMarker.png');
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/*
+    CANVAS
+*/
+#overlayCanvas { 
+    position: fixed;
+}
+
+/*
+    UI ELEMENTS
+*/
+
+button {
+    border: 2px solid var(--borderColor);
+    border-radius: 5px;
+    color: white;
+    background-color: #2d2d2d;
+    font-size: large;
+    padding: 3px;
+}
+
+#continueButton {
+    position: fixed;
+    top: 10px;
+    left: 50vw;
+    width: 120px; height: 60px;
+    margin-left: -60px;
+    display: none;
+}
+
+#selectGameArea{
+    position: fixed;
+    top: 10px; left: 50vw;
+    padding: 5px;
+    width: auto; height: auto;
+    max-height: 30vh;
+    border: 2px solid var(--borderColor);
+    border-radius: 5px;
+    display: block;
+    color: white;
+    background-color: black;
+    text-align: left;
+    font-size: large;
+    line-height: 2;
+    overflow: auto;
+}
+#selectGameArea > input[type="radio"] {
+    -webkit-appearance: none;
+    background-color: black;
+    border: 2px solid var(--borderColor);
+    border-radius: 100%;
+    width: 100%;
+    display: inline-block;
+    position: relative;
+    width: 25px;
+    height: 25px;
+    margin-bottom: -6px;
+}
+#selectGameArea > input[type="radio"]:checked {
+    background-color: var(--borderColor);
+    outline: none;
+}
+
+/* Game start button */
+#gameButton{
+    position: fixed;
+    top: 50vh; right: 50vw;
+    width: 160px; height: 70px;
+    margin-right: -80px;
+    margin-top: -35px;
+    border: 2px solid var(--borderColor);
+    border-radius: 5px;
+    display: block;
+    color: white;
+    background-color: black;
+    font-size: x-large;
+    outline: none;
+}
+
+/* For top left and right round elements */
+.ui {
+    position: fixed;
+    opacity: 1;
+    background-size: 100%;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+#menu {
+    top: 10px;
+    left: 10px;
+    background-image: url('./img/menu2.png');
+    border: 2px solid var(--borderColor);
+    /* Smooth visibility */
+    transition: opacity 1s ease-out;
+}
+#menuBox {
+    position: fixed;
+    top: 5px; left: 5px;
+    word-wrap: break-word;
+    overflow: auto;
+    font-size: large;
+    color: white;
+    border: 4px solid var(--borderColor);
+    border-radius: 5px;
+    display: block;
+    background-color: black;
+    text-align: left;
+    /* Smooth visibility */
+    opacity: 0;
+    height: 0;
+    width: 0;
+    transition: opacity 1s ease-out;
+}
+#menuBox > table {
+    display: block;
+}
+#menuBox > table > tbody > tr > td {
+    border-bottom: 2px solid white;
+    padding: 5px 0 5px 0;
+}
+/* Bottom line for all table cells except last one */
+#menuBox > table > tbody > tr:last-of-type > td {
+    border-bottom: none;
+}
+
+#activeGameInfo {
+    position: fixed;
+    top: 68px;
+    right: 5px;
+    width: 58px;
+    height: auto;
+
+    word-wrap: break-word;
+    overflow: hidden;
+    font-size: small;
+
+    color: white;
+    border: 2px solid var(--borderColor);
+    border-radius: 5px;
+    display: none;
+    background-color: black;
+    text-align: center;
+    padding: 3px 1px 3px 1px;
+}
+
+/* Base circle on top of time game time is displayed */
+#playTime {
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    background-color: black;
+    border: 2px solid var(--borderColor);
+}
+/* Game time */
+#gameTime{
+    position: fixed;
+    top: 28px;
+    right: 18px;
+    z-index: 1;
+    display: block;
+    color: white;
+}
+#boosterTime{
+    position: fixed;
+    top: 68px;
+    right: 14px;
+    z-index: 1;
+    display: none;
+    color: red;
+    background-color: black;
+    border: 2px solid var(--borderColor);
+    padding: 2px;
+    border-radius: 5px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+}
+
+#distToBooster{
+    display: none;
+    position: fixed;
+    color: white;
+    border: 2px solid var(--borderColor);
+    background-color: black;
+    border-radius: 5px;
+}
+
+/*
+    GAME LOGO AT TOP MIDDLE
+*/
+#gameLogo{
+    position: fixed;
+    top: 10px;
+    left: 50vw;
+    margin-left: -25px;
+    opacity: 1;
+    background-size: 100%;
+    background-image: url('./img/logo2.png');
+    background-position: 0 0;
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+/*
+    MAPBOX LOGO AT BOTTOM LEFT
+*/
+#mapboxLogo {
+    position: fixed;
+    opacity: 1;
+    background-size: 100%;
+    display:block;
+    width: 80px;
+    height: 30px;
+    bottom: 0;
+    left: 10px;
+    background-image: url('./img/mapboxLogo.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+/* Hide original mapbox logo */
+a[class="mapboxgl-ctrl-logo"]{
+    display: none;
+}
+
+/*
+    EXPAND BUTTON FOR ZOOM LEVEL
+*/
+#expand{
+    position: fixed;
+    bottom: 10px;
+    left: 50vw;
+    margin-left: -25px;
+    opacity: 1;
+    background-size: 75%;
+    background-image: url('./img/expand.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: black;
+    display: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 2px solid var(--borderColor);
+}
+#expandTextCircle{
+    position: fixed;
+    bottom: 10px;
+    left: 50vw;
+    margin-left: -25px;
+    opacity: 1;
+    background-color: black;
+    display: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 2px solid var(--borderColor);
+    color: white;
+}
+#expandTime{
+    position: fixed;
+    bottom: 28px;
+    left: 50vw;
+    margin-left: -17px;
+}
+
+/*
+    COPYRIGHT ELEMENTS AT BOTTOM RIGHT OF THE UI
+*/
+.mapboxgl-ctrl-bottom-right{
+    display: none;
+}
+/* Copyright logo */
+#copyright{
+    position: fixed;
+    opacity: 1;
+    display: block;
+    width: 20px; height: 20px;
+    bottom: 10px; right: 8px;
+    background-image: url('./img/copyright.png');
+    background-position: 0 0;
+    background-size: 100%;
+    border: 2px solid var(--borderColor);
+    border-radius: 100%;
+    /* Smooth visibility */
+    opacity: 1;
+    transition: opacity 1s ease-out;
+}
+/* Legal info in a box */
+#legalBox{
+    position: fixed;
+    bottom: 5px; right: 5px;
+    white-space: nowrap;
+    background-color: white;
+    border: 4px solid var(--borderColor);
+    border-radius: 5px;
+    background-color: black;
+    text-align: center;
+    /* Smooth visibility */
+    opacity: 0;
+    height: 0;
+    width: 0;
+    transition: opacity 1s ease-out;
+}
+/* Links in legal box */
+a[class="legalLink"]{
+    color:white;
+    text-decoration: none;
+    display:inline-block;
+    padding: 5px;
+    font-size: large;
+}
+/* Separate better from upper border */
+a[class="legalLink"]:first-of-type{
+    margin-top: 15px;
+}
+
+
+/*
+    TEXTBOX
+*/
+
+#textBox{
+    position: fixed;
+    word-wrap: normal;
+    white-space: nowrap;
+    overflow: auto;
+    bottom: 70px;
+
+    left: 50vw;
+    height: auto;
+    max-height: 25vh;
+    width: auto;
+
+    padding: 2px;
+
+    background-color: black;
+    font-size: large;
+    color: white;
+    border: 4px solid var(--borderColor);
+    border-radius: 5px;
+    display:none;
+}
+
+
+/*
+    TOGGLE SWITCH
+*/
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--borderColor);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--borderColor);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(18px);
+    -ms-transform: translateX(18px);
+    transform: translateX(18px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 20px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}

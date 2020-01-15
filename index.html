@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src='./js/mapbox-gl.js'></script>
+    <link href='./mapbox-gl.css' rel='stylesheet'/>
+    <link href='./style.css' rel='stylesheet'/>
+    <script src='./js/main.js'></script>
+    <link rel="shortcut icon" href="./img/logo2.png">
+    <title>Location Hunter</title>
+</head>
+<body onload="main()">
+
+    <div id='map'></div>  
+    <canvas id="overlayCanvas"></canvas>
+
+    <nav id='distToBooster'></nav>
+
+    <nav id='menu' class='ui'></nav>
+    <nav id='menuBox'></nav>
+    <nav id='gameLogo'></nav>
+    <!-- Base for time display -->
+    <nav id='playTime' class='ui'></nav>
+    <!-- Time itself -->
+    <nav id='gameTime'></nav>
+    <nav id='boosterTime'></nav>
+
+    <nav id='activeGameInfo'></nav>
+
+    <a target="_blank" href="https://www.mapbox.com/" id="mapboxLogo"></a>
+
+    <nav id='expand'></nav>
+    <nav id='expandTextCircle'></nav>
+    <nav id='copyright'></nav>
+
+    <nav id='textBox'></nav>
+
+    <nav id='legalBox'></nav>
+
+    <nav id='selectGameArea'></nav>
+    <button id="gameButton">Start a new game!</button>
+    <button id='continueButton'>Continue to a new game!</button>
+</body>
+</html>
