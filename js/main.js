@@ -134,7 +134,8 @@ const startGame = () => {
 
 const displayMap = () => {
     let pageMap = document.getElementById("map")
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZXBlbGkiLCJhIjoiY2sydTVsdnRwMWU0YTNpcWI4bTRyY3Q5YiJ9.4PJtcpEKynaEHJk67Bz_Iw'
+    // FOR TESTING ADDING THIS TOKEN IS NEEDED SINCE OLD TOKEN IS NOW DELETED
+    mapboxgl.accessToken = ''
 
     map = new mapboxgl.Map({
         container: pageMap, // container id
