@@ -1,4 +1,5 @@
-# Location based game made with JavaScript and that uses mapbox api.
+# What is this?
+This is a location based game made with JavaScript and that uses mapbox api.
 
 # How the game looks like
 Here is some previews of how the game looks like in action
